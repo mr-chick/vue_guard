@@ -1,0 +1,32 @@
+{
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A helper to deal with simple permissions",
+  "homepage": "https://github.com/mr-chick/vue_laravel_echo#readme",
+  "keywords": [
+    "vue",
+    "vue.js",
+    "guard",
+    "permissions"
+  ],
+  "license": "MIT",
+  "main": "dist/build.js",
+  "name": "@mr_chick/vue_guard",
+  "scripts": {
+    "test": "test",
+    "build": "webpack --mode production"
+  },
+  "version": "1.0.11",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.32",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "*",
+    "babel-preset-es2015": "^6.24.1",
+    "cross-env": "^3.1.3",
+    "webpack": "^4.12.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {}
+}
