@@ -5,5 +5,5 @@ const ADD_RULE = (state, rule) => {
 }
 
 export default {
-  ADD_CHANNEL
+  ADD_RULE
 }
