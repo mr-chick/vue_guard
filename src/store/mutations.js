@@ -1,7 +1,10 @@
 
-const ADD_RULE = (state, rule) => {
-  // console.log('mutationg store to add channel ' + channel)
-  // state.channels[channel] = {}
+const ADD_RULE = (state, {type, key, value}) => {
+  console.log(type, key, value);
+  if(!state[type]) state[type] = {};
+  if(!state[type][key]) state[type][key] = {};
+  
+  state[type][key][value] = 'bar';
 }
 
 export default {

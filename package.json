@@ -1,8 +1,8 @@
 {
   "bundleDependencies": false,
   "deprecated": false,
-  "description": "A helper to deal with simple permissions",
-  "homepage": "https://github.com/mr-chick/vue_laravel_echo#readme",
+  "description": "A helper plugin to deal with simple permissions",
+  "homepage": "",
   "keywords": [
     "vue",
     "vue.js",
@@ -16,7 +16,7 @@
     "test": "test",
     "build": "webpack --mode production"
   },
-  "version": "1.0.11",
+  "version": "1.0.1",
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.32",
