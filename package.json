@@ -13,10 +13,10 @@
   "main": "dist/build.js",
   "name": "@mr_chick/vue_guard",
   "scripts": {
-    "test": "mocha-webpack --webpack-config ./src/webpack.config.js --require test/setup.js test/**/*.spec.js",
-    "build": "webpack --mode production"
+    "test": "mocha-webpack --webpack-config ./src/webpack.config.test.js --require test/setup.js test/**/*.spec.js",
+    "build": "webpack --mode production --webpack-config ./src/webpack.config.js"
   },
-  "version": "1.0.3",
+  "version": "1.0.6",
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.32",
@@ -25,6 +25,9 @@
     "babel-loader": "*",
     "babel-preset-es2015": "^6.24.1",
     "cross-env": "^3.1.3",
+    "expect": "^23.3.0",
+    "jsdom": "^11.11.0",
+    "jsdom-global": "^3.0.2",
     "mocha": "^5.2.0",
     "mocha-webpack": "^1.1.0",
     "webpack": "^4.12.1",
