@@ -1,5 +1,6 @@
 const state = {
-  'ability': {}
+  'ability': {},
+  'foo': 'bar'
 }
 
 import actions from './actions'

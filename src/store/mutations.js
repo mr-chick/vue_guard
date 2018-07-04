@@ -7,6 +7,11 @@ const ADD_RULE = (state, {type, key, value}) => {
   state[type][key][value] = 'bar';
 }
 
+const RESET_STATE = state => {
+  state.ability = {}
+}
+
 export default {
-  ADD_RULE
+  ADD_RULE,
+  RESET_STATE
 }

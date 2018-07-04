@@ -25,13 +25,6 @@ const vue_guard = class VG {
     this.initialize(settings);
     Vue.prototype.$guard = this;
 
-    // set the store
-    if (settings.store && typeof settings.store === 'object') {
-      this.store = settings.store
-      this.showDebug('guard store', guardStore);
-      this.store.registerModule(['guard'], guardStore, { preserveState: true })
-    }
-    this.showDebug('Store is set to ', this.store)
   }
 
   // /**
@@ -42,12 +35,15 @@ const vue_guard = class VG {
     // set debugger
     if (settings.debug && typeof settings.debug === "boolean") this.debug = settings.debug;
     this.showDebug("initializing!");
+    
+    // set the store
+    if (settings.store && typeof settings.store === 'object') {
+      this.store = settings.store
+      this.store.registerModule(['guard'], guardStore)
+      console.log("registered store!", guardStore, this.store);
+    }
 
-    // set broadcaster
-    // if (settings.broadcaster && typeof settings.broadcaster === "object") {
-    //   this.options.broadcaster.name = settings.broadcaster.name;
-    //   // this.options.broadcaster.object = settings.broadcaster.object
-    // }
+    this.showDebug('Store is set to ', this.store)
   }
 
   can (rules = []) {
