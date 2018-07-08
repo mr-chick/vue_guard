@@ -9,7 +9,7 @@ module.exports = {
         library: 'vue_laravel_echo',
         libraryTarget: 'commonjs2'
       },
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -20,8 +20,8 @@ module.exports = {
         }
       }
     ]
-  },
-  externals: [nodeExternals()]
+  }
+  // externals: [nodeExternals()]
 };
 
 // npx webpack

@@ -17,6 +17,12 @@ const vue_guard = class VG {
   //  */
 
   install (Vue, settings) {
+    const default_settings = {
+      'debug': false
+    }
+
+    settings = Object.assign({}, default_settings, settings || {});
+    
     // settings should be an object
     if (typeof settings !== "object") {
         // throw error
@@ -57,26 +63,25 @@ const vue_guard = class VG {
    * value - rule value
    */
 
-  addRule ({type, key, value}) {
+  addRule ({type, key, value} = {}) {
     // type should be string or array of strings
     if(!(typeof type === "string")) {
+      throw new TypeError('Invalid type!');
       throw 'type must be a string';
     }
 
     // key must be a string
     if(!(typeof key === "string")) {
-      throw 'key must be a string';
+      throw new TypeError('Invalid key!');
     }
 
     // value must be a string
     if(!(typeof value === "string")) {
-      throw 'value must be a string';
+      throw new TypeError('Invalid value!');
     }
-    
-    // all should be ok
 
-    console.log(type, key, value);
-    this.store.dispatch('guard/addRule',{'type': type, 'key': key, 'value': value},{root: true});
+    return true;
+    // this.store.dispatch('guard/addRule',{'type': type, 'key': key, 'value': value},{root: true});
   }
 
 
