@@ -20,23 +20,23 @@ describe('guard plugin without options', () => {
 
   describe('addRule', function() {
     it('should throw error if missing arguments', function() {
-      expect(function() { vm.$guard.addRule()}).to.throw('Invalid type!');
+      expect(() => vm.$guard.addRule()).to.throw('Invalid type!');
     })
     it('should throw error if missing type', function() {
-      expect(function() { vm.$guard.addRule({'key': 'test', 'value': 'test'})}).to.throw('Invalid type!');
+      expect(() => vm.$guard.addRule({'key': 'test', 'value': 'test'})).to.throw('Invalid type!');
     })
     it('should throw error if missing key', function() {
-      expect(function() { vm.$guard.addRule({'type': 'test', 'value': 'test'})}).to.throw('Invalid key!');
+      expect(() => vm.$guard.addRule({'type': 'test', 'value': 'test'})).to.throw('Invalid key!');
     })
     it('should throw error if missing value', function() {
-      expect(function() { vm.$guard.addRule({'type': 'test', 'key': 'test'})}).to.throw('Invalid value!');
+      expect(() => vm.$guard.addRule({'type': 'test', 'key': 'test'})).to.throw('Invalid value!');
     })
     it('should add the rule', function() {
-      expect(function() { vm.$guard.addRule({
+      expect(() => vm.$guard.addRule({
         'type': 'ability',
         'key': 'employee.' + value.name,
         'value': 'foo'
-      })}).toEqual(true);
+      })).to.equal(true);
     })
   })
 })

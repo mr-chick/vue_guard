@@ -80,7 +80,8 @@ const vue_guard = class VG {
       throw new TypeError('Invalid value!');
     }
 
-    return true;
+    return(true);
+    
     // this.store.dispatch('guard/addRule',{'type': type, 'key': key, 'value': value},{root: true});
   }
 
