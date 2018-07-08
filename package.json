@@ -13,26 +13,29 @@
   "main": "dist/build.js",
   "name": "@mr_chick/vue_guard",
   "scripts": {
-    "test": "mocha-webpack --webpack-config ./src/webpack.config.test.js --require test/setup.js test/**/*.spec.js",
-    "build": "webpack --mode production --webpack-config ./src/webpack.config.js"
+    "build": "webpack --mode production --webpack-config ./src/webpack.config.js",
+    "mv": "mv dist/build.js vue/node_modules/@mr_chick/vue_guard/dist/build.js"
   },
   "version": "1.0.6",
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.32",
-    "@vue/test-utils": "^1.0.0-beta.20",
-    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "*",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "cross-env": "^3.1.3",
-    "expect": "^23.3.0",
-    "jsdom": "^11.11.0",
-    "jsdom-global": "^3.0.2",
-    "mocha": "^5.2.0",
-    "mocha-webpack": "^1.1.0",
-    "webpack": "^4.12.1",
+    "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8",
     "webpack-node-externals": "^1.7.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.(js|vue)"
+    ],
+    "instrument": false,
+    "sourceMap": false
+  }
 }
