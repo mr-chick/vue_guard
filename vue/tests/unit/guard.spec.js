@@ -32,9 +32,9 @@ describe('guard plugin without options', () => {
       expect(() => vm.$guard.addRule({'type': 'test', 'key': 'test'})).to.throw('Invalid value!');
     })
     it('should add the rule', function() {
-      expect(() => vm.$guard.addRule({
+      expect(vm.$guard.addRule({
         'type': 'ability',
-        'key': 'employee.' + value.name,
+        'key': 'employee.test',
         'value': 'foo'
       })).to.equal(true);
     })
