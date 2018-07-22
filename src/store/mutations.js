@@ -1,10 +1,9 @@
 
-const ADD_RULE = (state, {type, key, value}) => {
-  console.log(type, key, value);
+const ADD_RULE = (state, {type, key, options}) => {
   if(!state[type]) state[type] = {};
   if(!state[type][key]) state[type][key] = {};
   
-  state[type][key][value] = 'bar';
+  state[type][key] = options;
 }
 
 const RESET_STATE = state => {
