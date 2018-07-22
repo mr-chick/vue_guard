@@ -3,6 +3,11 @@ const ability = state => (ability) => {
   return (state.ability.hasOwnProperty(ability)) ? true : false;
 }
 
+const abilities = state => {
+  return state.ability || {}
+}
+
 export default {
-  ability
+  ability,
+  abilities
 }  

@@ -1,3 +1,17 @@
+
+/**
+ * ToDo:
+ * 
+ * can
+ * cannot
+ * 
+ * has('rule-name') instead of hasAbility
+ * 
+ * can('edit','employee',id) // if number it defaults to id// maybe you can set this up
+ * can('edit','employee',{'id': 13})
+*/
+
+
 /**
  * Main object
  */
@@ -17,16 +31,22 @@ const vue_guard = class VG {
   //  */
 
   install (Vue, settings) {
+    if(typeof settings === "undefined") throw 'MissingOptions';
+
     const default_settings = {
       'debug': false
     }
 
     settings = Object.assign({}, default_settings, settings || {});
     
-    // settings should be an object
-    if (typeof settings !== "object") {
-        // throw error
-    }
+    // checking for store
+    if(
+      !settings.hasOwnProperty('store') || 
+      typeof settings.store !== "object" || 
+      typeof settings.store.registerModule !== "function"
+    ) throw 'InvalidOptions'
+
+    // store should exist?
 
     this.initialize(settings);
     Vue.prototype.$guard = this;
@@ -43,11 +63,8 @@ const vue_guard = class VG {
     this.showDebug("initializing!");
     
     // set the store
-    if (settings.store && typeof settings.store === 'object') {
       this.store = settings.store
       this.store.registerModule(['guard'], guardStore)
-      console.log("registered store!", guardStore, this.store);
-    }
 
     this.showDebug('Store is set to ', this.store)
   }
@@ -63,7 +80,7 @@ const vue_guard = class VG {
    * value - rule value
    */
 
-  addRule ({type, key, value} = {}) {
+  addRule ({type, key, options} = {}) {
     // type should be string or array of strings
     if(!(typeof type === "string")) {
       throw new TypeError('Invalid type!');
@@ -75,16 +92,18 @@ const vue_guard = class VG {
       throw new TypeError('Invalid key!');
     }
 
-    // value must be a string
-    if(!(typeof value === "string")) {
-      throw new TypeError('Invalid value!');
+    // options must be an object
+    if(!(typeof options === "object")) {
+      throw new TypeError('Invalid options!');
     }
 
-    return(true);
     
-    // this.store.dispatch('guard/addRule',{'type': type, 'key': key, 'value': value},{root: true});
+    this.store.dispatch('guard/addRule',{'type': type, 'key': key, 'options': options},{root: true});
   }
 
+  listAbilities () {
+    return this.store.getters['guard/abilities'];
+  }
 
   /**
    * Has ability
@@ -94,6 +113,7 @@ const vue_guard = class VG {
     // checks if the ability exist
     return this.store.getters['guard/ability'](ability);
   }
+  
   /** 
    * Debug
    */
