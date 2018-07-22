@@ -1,18 +1,5 @@
 
 /**
- * ToDo:
- * 
- * can
- * cannot
- * 
- * has('rule-name') instead of hasAbility
- * 
- * can('edit','employee',id) // if number it defaults to id// maybe you can set this up
- * can('edit','employee',{'id': 13})
-*/
-
-
-/**
  * Main object
  */
 
@@ -69,10 +56,17 @@ const vue_guard = class VG {
     this.showDebug('Store is set to ', this.store)
   }
 
-  can (rules = []) {
-    console.log(rules);
+  can (rule) {
+    return this.store.getters['guard/can'](rule);
   }
 
+  cannot (rule) {
+    return !this.can(rule);
+  }
+
+  cant (rule) {
+    return this.cannot(rule);
+  }
   /** 
    * Adds a new rule
    * type - ruye type string
@@ -80,38 +74,22 @@ const vue_guard = class VG {
    * value - rule value
    */
 
-  addRule ({type, key, options} = {}) {
-    // type should be string or array of strings
-    if(!(typeof type === "string")) {
-      throw new TypeError('Invalid type!');
-      throw 'type must be a string';
-    }
+  allow ({rule, instance = null, options = {}}) {
 
-    // key must be a string
-    if(!(typeof key === "string")) {
-      throw new TypeError('Invalid key!');
+    // rule must be a string
+    if(!(typeof rule === "string")) {
+      throw new TypeError('Invalid rule!');
     }
-
-    // options must be an object
-    if(!(typeof options === "object")) {
-      throw new TypeError('Invalid options!');
-    }
-
     
-    this.store.dispatch('guard/addRule',{'type': type, 'key': key, 'options': options},{root: true});
+    this.store.dispatch('guard/allow',{'rule': rule}, {'root': true});
   }
 
-  listAbilities () {
-    return this.store.getters['guard/abilities'];
+  disallow ({ rule }) {
+    this.store.dispatch('guard/disallow', {'rule': rule}, {'root': true});
   }
 
-  /**
-   * Has ability
-   */
-
-  hasAbility(ability) {
-    // checks if the ability exist
-    return this.store.getters['guard/ability'](ability);
+  listRules () {
+    return this.store.getters['guard/rules'];
   }
   
   /** 

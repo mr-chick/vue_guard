@@ -1,16 +1,18 @@
 
-const ADD_RULE = (state, {type, key, options}) => {
-  if(!state[type]) state[type] = {};
-  if(!state[type][key]) state[type][key] = {};
-  
-  state[type][key] = options;
+const ADD_RULE = (state, {rule}) => {
+  state.rules[rule] = null; // todo, if not null, check stuff
+}
+
+const REMOVE_RULE = (state, {rule}) => {
+  delete state.rules[rule];
 }
 
 const RESET_STATE = state => {
-  state.ability = {}
+  state.rules = Object.assign({}, {});
 }
 
 export default {
   ADD_RULE,
+  REMOVE_RULE,
   RESET_STATE
 }
