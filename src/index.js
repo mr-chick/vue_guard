@@ -51,7 +51,7 @@ const vue_guard = class VG {
     
     // set the store
       this.store = settings.store
-      this.store.registerModule(['guard'], guardStore)
+      this.store.registerModule(['guard'], guardStore, { preserveState: !!this.store.state.guard} )
 
     this.showDebug('Store is set to ', this.store)
   }
