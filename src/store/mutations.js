@@ -1,6 +1,8 @@
 
-const ADD_RULE = (state, {rule}) => {
-  state.rules[rule] = null; // todo, if not null, check stuff
+const ADD_RULE = (state, {rule, id=null}) => {
+  state.rules[rule] = {
+    id
+  }; // todo, if not null, check stuff
 }
 
 const REMOVE_RULE = (state, {rule}) => {
