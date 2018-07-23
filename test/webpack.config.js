@@ -5,7 +5,7 @@ const isCoverage = process.env.NODE_ENV === 'coverage';
 const rootDir = path.join(__dirname, '..')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   target: 'node',
   devtool: 'inline-cheap-module-source-map',
 

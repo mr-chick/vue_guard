@@ -6,7 +6,7 @@ module.exports = {
   output: {
         path: path.resolve('../dist'),
         filename: 'build.js',
-        library: 'vue_laravel_echo',
+        library: 'vue_guard',
         libraryTarget: 'commonjs2'
       },
   mode: 'production',
@@ -20,8 +20,8 @@ module.exports = {
         }
       }
     ]
-  }
-  // externals: [nodeExternals()]
+  },
+  externals: [nodeExternals()]
 };
 
 // npx webpack
