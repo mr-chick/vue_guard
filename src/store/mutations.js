@@ -1,12 +1,14 @@
 
 const ADD_RULE = (state, {rule, id=null}) => {
-  state.rules[rule] = {
+  state.rules = Object.assign({}, state.rules, { [rule]: {
     id
-  }; // todo, if not null, check stuff
+  }
+  })
 }
 
 const REMOVE_RULE = (state, {rule}) => {
   delete state.rules[rule];
+  state.rules = Object.assign({}, state.rules);
 }
 
 const RESET_STATE = state => {

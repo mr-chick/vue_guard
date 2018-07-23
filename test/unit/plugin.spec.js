@@ -2,8 +2,8 @@ import Vue from 'vue'
 import { createLocalVue } from '@vue/test-utils'
 
 import Vuex from 'vuex'
-import guard from 'dist/build.js'
-// import guard from 'app'
+// import guard from 'dist/build.js'
+import guard from 'app'
 
 describe('Plugin', () => {
   describe('missing parameters', () => {
