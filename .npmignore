@@ -2,3 +2,5 @@ build/
 node_modules/
 src/
 vue/
+test/
+jest.config.js
