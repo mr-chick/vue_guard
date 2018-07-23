@@ -4,3 +4,4 @@ src/
 vue/
 test/
 jest.config.js
+.babelrc
