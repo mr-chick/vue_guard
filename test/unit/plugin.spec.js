@@ -71,9 +71,7 @@ describe('Plugin', () => {
 
       it('should increase rules count by adding a rule', () => {
         // add rule 
-        localVue.prototype.$guard.allow({
-          'rule': 'can-do-stuff'
-        });
+        localVue.prototype.$guard.allow('can-do-stuff');
         
         expect(Object.keys(localVue.prototype.$guard.listRules()).length).toBe(1);
       })
@@ -88,9 +86,7 @@ describe('Plugin', () => {
 
       it('should remove the rule', () => {
         // add rule 
-        localVue.prototype.$guard.disallow({
-          'rule': 'can-do-stuff'
-        });
+        localVue.prototype.$guard.disallow('can-do-stuff');
       })
 
       it('shuld return false to "can"', () => {

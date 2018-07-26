@@ -74,7 +74,7 @@ const vue_guard = class VG {
    * value - rule value
    */
 
-  allow ({rule, instance = null, options = {}}) {
+  allow (rule) {
 
     // rule must be a string
     if(!(typeof rule === "string")) {
@@ -84,7 +84,7 @@ const vue_guard = class VG {
     this.store.dispatch('guard/allow',{'rule': rule}, {'root': true});
   }
 
-  disallow ({ rule }) {
+  disallow (rule) {
     this.store.dispatch('guard/disallow', {'rule': rule}, {'root': true});
   }
 
