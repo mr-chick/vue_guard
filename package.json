@@ -12,6 +12,10 @@
   "license": "MIT",
   "main": "dist/build.js",
   "name": "@mr_chick/vue_guard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mr-chick/vue_guard.git"
+  },
   "scripts": {
     "build": "webpack --mode production --webpack-config ./src/webpack.config.js",
     "test": "mocha-webpack --webpack-config test/webpack.config.js --require test/bootstrap.js 'test/{feature,unit}/**/*.spec.js'"
