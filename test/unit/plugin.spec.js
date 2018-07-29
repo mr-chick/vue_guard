@@ -2,20 +2,14 @@ import Vue from 'vue'
 import { createLocalVue } from '@vue/test-utils'
 
 import Vuex from 'vuex'
-// import guard from 'dist/build.js'
-import guard from 'app'
+import guard from 'dist/build.js'
+// import guard from 'app'
 
 describe('Plugin', () => {
   describe('missing parameters', () => {
-    
-    it('should throw MissingOptions', () => {
+    it('should throw MissingStore', () => {
       let localVue = createLocalVue();
-      expect(() => { localVue.use(guard); }).toThrow('MissingOptions');
-    })
-
-    it('should throw InvalidOptions', () => {
-      let localVue = createLocalVue();
-      expect(() => { localVue.use(guard, {}); }).toThrow('InvalidOptions');
+      expect(() => { localVue.use(guard, {}); }).toThrow('MissingStore');
     })
 
     it('invalid store. should throw InvalidOptions', () => {
@@ -25,9 +19,10 @@ describe('Plugin', () => {
 
       expect(() => { localVue.use(guard, {
         'store': {}
-      }); }).toThrow('InvalidOptions');
+      }); }).toThrow('InvalidStore');
     })
-
+  });
+  describe('valid parameters', () => {
     it('valid store. should pass', () => {
       let localVue = createLocalVue();
       localVue.use(Vuex);
@@ -36,9 +31,6 @@ describe('Plugin', () => {
         'store': store
       });
     });
-  });
-  describe('valid parameters', () => {
-
     it('adds an $guard method to the Vue prototype', () => {
       let localVue = createLocalVue();
       localVue.use(Vuex);
@@ -96,7 +88,6 @@ describe('Plugin', () => {
       it('shuld return true to "cannot"', () => {
         expect(localVue.prototype.$guard.cannot('can-do-stuff')).toBe(true);
       })
-
     });
   });
 });
