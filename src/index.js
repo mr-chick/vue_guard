@@ -1,12 +1,7 @@
-
-/**
- * Main object
- */
-
 import guardStore from './store/';
 
-const vue_guard = ({guard_store = null } = {}) => {
-  let store = null;
+const vue_guard = ({_guard_store = null } = {}) => {
+  let _store = null;
 
   return {
     getDebug() { return debug; },
@@ -24,7 +19,6 @@ const vue_guard = ({guard_store = null } = {}) => {
       debug = 'false',
       store = null
       } = {}) {
-      
       if(store == null) throw 'MissingStore';
 
       if(
@@ -32,18 +26,18 @@ const vue_guard = ({guard_store = null } = {}) => {
         typeof store.registerModule !== "function"
       ) throw 'InvalidStore'
 
-      this.store = store;
+      this._store = store;
 
-      // this.showDebug('Store is set to ', this.store);
+      // this.showDebug('Store is set to ', this._store);
 
-      this.store.registerModule(['guard'], guardStore, { preserveState: !!this.store.state.guard} )
+      this._store.registerModule(['guard'], _guard_store, { preserveState: !!this._store.state.guard} )
 
       Vue.prototype.$guard = this;
     },
     
 
     can (rule) {
-      return this.store.getters['guard/can'](rule);
+      return this._store.getters['guard/can'](rule);
     },
 
     cannot (rule) {
@@ -55,7 +49,7 @@ const vue_guard = ({guard_store = null } = {}) => {
     },
 
     listRules () {
-      return this.store.getters['guard/rules'];
+      return this._store.getters['guard/rules'];
     },
 
     allow (rule) {
@@ -65,11 +59,11 @@ const vue_guard = ({guard_store = null } = {}) => {
         throw new TypeError('Invalid rule!');
       }
       
-      this.store.dispatch('guard/allow',{'rule': rule}, {'root': true});
+      this._store.dispatch('guard/allow',{'rule': rule}, {'root': true});
     },
 
     disallow (rule) {
-      this.store.dispatch('guard/disallow', {'rule': rule}, {'root': true});
+      this._store.dispatch('guard/disallow', {'rule': rule}, {'root': true});
     },
       
     /** 
@@ -82,4 +76,4 @@ const vue_guard = ({guard_store = null } = {}) => {
   }
 }
 
-export default vue_guard({'guard_store': guardStore});
+export default vue_guard({'_guard_store': guardStore});
