@@ -35,25 +35,25 @@ import guard from '@mr_chick/vue_guard'
 
 `this.$guard.allow('i-can-do-this');`
 
-#### To remove a permission
+#### To disallow a permission
 
 `this.$guard.disallow('i-can-do-this')`
 
 
 #### To check if you can do something, you can use 
 
-`this.$guard.can('i-can-do-this')` returns true if rule exists, false if not
+`this.$guard.can('i-can-do-this')` returns true if permission exists, false if not
 
 ### getters
 
-`this.$guard.can('rule')`
+`this.$guard.can('permission')`
 
-`this.$guard.cannot('rule')`
+`this.$guard.cannot('permission')`
 
-`this.$guard.cant('rule')` (alias for cannot)
-
-
-#### you can get the list object via `this.$guard.listRules()`
+`this.$guard.cant('permission')` (alias for cannot)
 
 
-#### the rules are so the getters will update if you use `allow` / `disallow`
+#### you can get the list object via `this.$guard.listPermissions()` 
+
+
+#### the permissions are so the getters will update if you use `allow` / `disallow`

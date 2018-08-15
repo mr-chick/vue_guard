@@ -36,34 +36,50 @@ const vue_guard = ({_guard_store = null } = {}) => {
     },
     
 
-    can (rule) {
-      return this._store.getters['guard/can'](rule);
+    can (permission, instance = null, id = null) {
+      return this._store.getters['guard/can'](permission, instance, id);
     },
 
-    cannot (rule) {
-      return !this.can(rule);
+    cannot (permission, instance = null, id = null) {
+      return !this.can(permission, instance, id);
     },
 
-    cant (rule) {
-      return this.cannot(rule);
+    cant (permission) {
+      return this.cannot(permission);
     },
 
-    listRules () {
-      return this._store.getters['guard/rules'];
+    listpermissions () {
+      return this._store.getters['guard/permissions'];
     },
 
-    allow (rule) {
+    allow (permission, instance = null, id = null) {
 
-      // rule must be a string
-      if(!(typeof rule === "string")) {
-        throw new TypeError('Invalid rule!');
+      // permission must be a string
+      if (!(typeof permission === "string")) {
+        throw new TypeError('Invalidpermission');
       }
       
-      this._store.dispatch('guard/allow',{'rule': rule}, {'root': true});
+      // if instance, must be string
+      if(instance && !(typeof instance === "string")) {
+        throw new TypeError('InvalidInstance');
+      }
+
+      this._store.dispatch('guard/allow',{permission, instance, id}, {'root': true});
     },
 
-    disallow (rule) {
-      this._store.dispatch('guard/disallow', {'rule': rule}, {'root': true});
+    disallow (permission, instance = null, id = null) {
+
+      // permission must be a string
+      if (!(typeof permission === "string")) {
+        throw new TypeError('Invalidpermission');
+      }
+
+      // if instance, must be string
+      if(instance && !(typeof instance === "string")) {
+        throw new TypeError('InvalidInstance');
+      }
+
+      this._store.dispatch('guard/disallow', { permission, instance, id}, {'root': true});
     },
       
     /** 
