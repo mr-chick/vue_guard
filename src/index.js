@@ -5,7 +5,7 @@ const vue_guard = ({_guard_store = null } = {}) => {
 
   return {
     getDebug() { return debug; },
-    setDebug(value) { 
+    setDebug(value) {
       debug = value;
       return this;
     },
@@ -22,7 +22,7 @@ const vue_guard = ({_guard_store = null } = {}) => {
       if(store == null) throw 'MissingStore';
 
       if(
-        typeof store !== "object" || 
+        typeof store !== "object" ||
         typeof store.registerModule !== "function"
       ) throw 'InvalidStore'
 
@@ -34,7 +34,6 @@ const vue_guard = ({_guard_store = null } = {}) => {
 
       Vue.prototype.$guard = this;
     },
-    
 
     can (permission, instance = null, id = null) {
       return this._store.getters['guard/can'](permission, instance, id);
@@ -58,7 +57,7 @@ const vue_guard = ({_guard_store = null } = {}) => {
       if (!(typeof permission === "string")) {
         throw new TypeError('Invalidpermission');
       }
-      
+
       // if instance, must be string
       if(instance && !(typeof instance === "string")) {
         throw new TypeError('InvalidInstance');
@@ -81,8 +80,8 @@ const vue_guard = ({_guard_store = null } = {}) => {
 
       this._store.dispatch('guard/disallow', { permission, instance, id}, {'root': true});
     },
-      
-    /** 
+
+    /**
      * Debug
      */
 
